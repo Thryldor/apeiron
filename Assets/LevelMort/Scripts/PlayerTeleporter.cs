@@ -11,6 +11,8 @@ public class PlayerTeleporter : MonoBehaviour
     public Transform receiverMort;
     public GameObject bottom;
     public bool vie;
+
+    public Camera mc;
     //private LevelGeneration levelGen;
     private void Start()
     {
@@ -23,10 +25,12 @@ public class PlayerTeleporter : MonoBehaviour
         {
             player.position = receiverMort.position;
             vie = !vie;
+            mc.transform.position = receiverMort.position;
         }
         else
         {
             player.position = receiverVie.position;
+            mc.transform.position = receiverVie.position;
             vie = !vie;
         }
     }
