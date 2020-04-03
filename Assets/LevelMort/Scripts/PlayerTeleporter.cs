@@ -6,13 +6,13 @@ using UnityEngine.UI;
 
 public class PlayerTeleporter : MonoBehaviour
 {
+    public GameObject playerVie;
+    public GameObject playerMort;
     public Transform player;
     public Transform receiverVie;
     public Transform receiverMort;
     public GameObject bottom;
     public bool vie;
-
-    public Camera mc;
     //private LevelGeneration levelGen;
     private void Start()
     {
@@ -25,13 +25,15 @@ public class PlayerTeleporter : MonoBehaviour
         {
             player.position = receiverMort.position;
             vie = !vie;
-            mc.transform.position = receiverMort.position;
+            playerVie.SetActive(false);
+            playerMort.SetActive(true);
         }
         else
         {
             player.position = receiverVie.position;
-            mc.transform.position = receiverVie.position;
             vie = !vie;
+            playerVie.SetActive(true);
+            playerMort.SetActive(false);
         }
     }
 

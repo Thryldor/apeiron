@@ -125,7 +125,7 @@ public class LevelGeneration : MonoBehaviour
             else
             {
                 stopGeneration = true;
-                Instantiate(Player, reviverVie.transform.position, Quaternion.identity);
+                // Instantiate(Player, reviverVie.transform.position, Quaternion.identity);
                 mc.transform.position = Player.transform.position;
                 mc.transform.Translate(0,0,-20);
             }
@@ -136,6 +136,5 @@ public class LevelGeneration : MonoBehaviour
     private void LateUpdate()
     {
         mc.transform.position = new Vector3(Player.transform.position.x,Player.transform.position.y,-20);
-        
     }
 }
