@@ -444,6 +444,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c689a0be1da6cc4479da7eedd73ee741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerVie: {fileID: 0}
+  playerMort: {fileID: 0}
   player: {fileID: 7636765424668634573}
   receiverVie: {fileID: 6995360184879880639, guid: 5b3c88224e4bd6f4d88663b40cb6919a,
     type: 3}
@@ -451,7 +453,6 @@ MonoBehaviour:
     type: 3}
   bottom: {fileID: 4135231591742727815, guid: 9f49c189d4cc12140910565b47ec023d, type: 3}
   vie: 1
-  mc: {fileID: 0}
 --- !u!114 &9009473404629361863
 MonoBehaviour:
   m_ObjectHideFlags: 0
