@@ -11,6 +11,7 @@ public class LevelGeneration : MonoBehaviour
     public Camera mc;
     public GameObject Player;   
     private int direction;
+    public GameObject reviverMort;
     public float movementAmount;
     private float timeBtwRooms;
     public float startTimeBtwRooms = 0.25f;
@@ -27,6 +28,7 @@ public class LevelGeneration : MonoBehaviour
         transform.position = startingPisition[randStartPosition].position;
         Instantiate(rooms[0], transform.position, Quaternion.identity);
         Player.transform.position = startingPisition[randStartPosition].position ;
+        reviverMort.transform.position = startingPisition[randStartPosition].position;
         direction = Random.Range(1, 6);
     }
 

@@ -11,6 +11,12 @@ public class PlayerTeleporter : MonoBehaviour
     public Transform receiverMort;
     public GameObject bottom;
     public bool vie;
+    //private LevelGeneration levelGen;
+    private void Start()
+    {
+       // receiverMort = levelGen.getStart();
+    }
+
     public void stateChange()
     {
         if (vie)
@@ -28,6 +34,11 @@ public class PlayerTeleporter : MonoBehaviour
     private void Update()
     {
         if (!vie && player.transform.position.y < bottom.transform.position.y - 18.5f)
+        {
+            stateChange();
+        }
+
+        if (vie && player.transform.position.y < -11)
         {
             stateChange();
         }
