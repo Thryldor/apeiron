@@ -73,7 +73,7 @@ namespace Player
             if (vie)
             {
                 if (_jumping) return;
-                _rigidbody2D.AddForce(new Vector2(0f, 300f));
+                _rigidbody2D.AddForce(new Vector2(0f, 400f));
                 animator.SetBool(Jumping, true);
                 _jumping = true;
                
