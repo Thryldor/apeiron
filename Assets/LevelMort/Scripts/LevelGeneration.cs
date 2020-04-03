@@ -8,7 +8,7 @@ public class LevelGeneration : MonoBehaviour
 {
     public Transform[] startingPisition;
     public GameObject[] rooms;
-    public Camera mc;
+    //public Camera mc;
     public GameObject Player;   
     private int direction;
     public GameObject reviverMort;
@@ -29,7 +29,8 @@ public class LevelGeneration : MonoBehaviour
         transform.position = startingPisition[randStartPosition].position;
         Instantiate(rooms[0], transform.position, Quaternion.identity);
         Player.transform.position = startingPisition[randStartPosition].position ;
-        reviverMort.transform.position = startingPisition[randStartPosition].position;
+        reviverMort.transform.position = startingPisition[randStartPosition].position + new Vector3(0,1,0);
+        
         direction = Random.Range(1, 6);
     }
 
@@ -125,9 +126,9 @@ public class LevelGeneration : MonoBehaviour
             else
             {
                 stopGeneration = true;
-                // Instantiate(Player, reviverVie.transform.position, Quaternion.identity);
-                mc.transform.position = Player.transform.position;
-                mc.transform.Translate(0,0,-20);
+                Instantiate(Player, reviverVie.transform.position, Quaternion.identity);
+               // mc.transform.position = Player.transform.position;
+              //  mc.transform.Translate(0,0,-20);
             }
            
         }
@@ -135,6 +136,6 @@ public class LevelGeneration : MonoBehaviour
 
     private void LateUpdate()
     {
-        mc.transform.position = new Vector3(Player.transform.position.x,Player.transform.position.y,-20);
+       // mc.transform.position = new Vector3(Player.transform.position.x,Player.transform.position.y,-20);
     }
 }

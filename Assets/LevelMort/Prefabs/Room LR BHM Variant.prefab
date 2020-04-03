@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d948bc6af7afb841bb127f8273aa885, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 7284675264575798487, guid: 846747acd72d10548979d13a442cad3e, type: 3}
+  Player: {fileID: 7503629607956848409, guid: 85bbdc5e10caf9744be485bcf7075c65, type: 3}
   gosthPoints:
   - {fileID: 3363800791768007292}
   - {fileID: 3091916959498976562}

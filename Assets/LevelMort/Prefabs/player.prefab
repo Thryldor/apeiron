@@ -453,6 +453,8 @@ MonoBehaviour:
     type: 3}
   bottom: {fileID: 4135231591742727815, guid: 9f49c189d4cc12140910565b47ec023d, type: 3}
   vie: 1
+  playerTransform: {fileID: 0}
+  mc: {fileID: 0}
 --- !u!114 &9009473404629361863
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,6 +469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   groundCheck: {fileID: 0}
+  vie: 1
 --- !u!1 &8906874243884152222
 GameObject:
   m_ObjectHideFlags: 0

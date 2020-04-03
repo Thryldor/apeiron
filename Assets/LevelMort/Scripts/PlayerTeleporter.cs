@@ -13,7 +13,7 @@ public class PlayerTeleporter : MonoBehaviour
     public Transform receiverMort;
     public GameObject bottom;
     public bool vie;
-
+    public Player.Player playerTransform;
     public Camera mc;
     //private LevelGeneration levelGen;
     private void Start()
@@ -29,20 +29,21 @@ public class PlayerTeleporter : MonoBehaviour
             vie = !vie;
             playerVie.SetActive(false);
             playerMort.SetActive(true);
+            playerTransform.vie = false;
         }
         else
         {
             player.position = receiverVie.position;
-            mc.transform.position = receiverVie.position;
             vie = !vie;
             playerVie.SetActive(true);
             playerMort.SetActive(false);
+            playerTransform.vie = true;
         }
     }
 
     private void Update()
     {
-        if (!vie && player.transform.position.y < bottom.transform.position.y - 18.5f)
+        if (!vie && player.transform.position.y - bottom.transform.position.y <= -16f)
         {
             stateChange();
         }

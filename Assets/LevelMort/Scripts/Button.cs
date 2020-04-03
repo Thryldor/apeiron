@@ -15,9 +15,10 @@ public class Button : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.transform.position.x <= (transform.position.x + 1f) &&
-            Player.transform.position.x >= (transform.position.x - 1f) &&
-            Player.transform.position.y <= (transform.position.y + 1f) &&
+        
+        if (Player.transform.position.x <= (transform.position.x + 1.2f) &&
+            Player.transform.position.x >= (transform.position.x - 1.2f) &&
+            Player.transform.position.y <= (transform.position.y + 1.2f) &&
             Player.transform.position.y >= (transform.position.y - 1.2f))
         {
             for (int i = 0; i < gosthPoints.Length; i++)

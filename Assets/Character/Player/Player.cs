@@ -20,6 +20,7 @@ namespace Player
         private float _speed = 40F;
         private bool _jumping;
         private WalkDirection _walk = WalkDirection.Right;
+        public bool vie = true;
         
         private static readonly int Jumping = Animator.StringToHash("Jumping");
         private static readonly int Speed = Animator.StringToHash("Speed");
@@ -69,10 +70,22 @@ namespace Player
 
         public void OnJump(InputAction.CallbackContext ctx)
         {
-            if (_jumping) return;
-            _rigidbody2D.AddForce(new Vector2(0f, 300f));
-            animator.SetBool(Jumping, true);
-            _jumping = true;
+            if (vie)
+            {
+                if (_jumping) return;
+                _rigidbody2D.AddForce(new Vector2(0f, 300f));
+                animator.SetBool(Jumping, true);
+                _jumping = true;
+               
+            }
+            else
+            {
+                _rigidbody2D.AddForce(new Vector2(0f, 150f));
+               // animator.SetBool(Jumping, true);
+            }
+           
+           // _jumping = true;
+           
         }
 
         public void OnAttack(InputAction.CallbackContext ctx)
