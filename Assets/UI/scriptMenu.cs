@@ -7,6 +7,6 @@ public class scriptMenu : MonoBehaviour
 {
     public void GoToLevel()
     {
-        SceneManager.LoadScene("Level Apeiron");
+        SceneManager.LoadScene("Game");
     }
 }
