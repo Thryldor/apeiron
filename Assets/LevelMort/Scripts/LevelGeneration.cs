@@ -12,6 +12,7 @@ public class LevelGeneration : MonoBehaviour
     public GameObject Player;   
     private int direction;
     public GameObject reviverMort;
+    public GameObject reviverVie;
     public float movementAmount;
     private float timeBtwRooms;
     public float startTimeBtwRooms = 0.25f;
@@ -124,7 +125,7 @@ public class LevelGeneration : MonoBehaviour
             else
             {
                 stopGeneration = true;
-                Instantiate(Player, Player.transform.position, Quaternion.identity);
+                Instantiate(Player, reviverVie.transform.position, Quaternion.identity);
                 mc.transform.position = Player.transform.position;
                 mc.transform.Translate(0,0,-20);
             }
