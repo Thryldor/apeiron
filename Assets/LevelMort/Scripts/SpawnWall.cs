@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Profiling.Memory.Experimental;
+using UnityEngine.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -24,8 +24,8 @@ public class SpawnWall : MonoBehaviour
     {
         if (Player)
         {
-           
-            
+
+
             if (Player.transform.position.x <= (transform.position.x + 1f) &&
                 Player.transform.position.x >= (transform.position.x - 1f) &&
                 Player.transform.position.y <= (transform.position.y + 1f) &&
@@ -52,6 +52,6 @@ public class SpawnWall : MonoBehaviour
                 }
             }
         }
-       
+
     }
 }

@@ -52,5 +52,7 @@ public class PlayerTeleporter : MonoBehaviour
         {
             stateChange();
         }
+        if (vie && playerTransform.vie == false)
+          stateChange();
     }
 }

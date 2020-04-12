@@ -4,12 +4,13 @@ namespace Character.Enemy
 {
   public class Enemy : MonoBehaviour
   {
-    bool directionLeft = false;
+    public bool directionLeft = false;
     public float speed = 0.5f;
 
     void Start()
     {
-
+      if (directionLeft == true)
+        transform.localRotation = Quaternion.Euler(0, 180, 0);
     }
 
     void Update()
