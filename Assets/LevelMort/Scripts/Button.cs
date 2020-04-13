@@ -7,6 +7,7 @@ public class Button : MonoBehaviour
 {
     public GameObject Player;
     public GameObject[] gosthPoints;
+    public GameObject room;
     private void Start()
     {
         Player = GameObject.FindWithTag("Player");
@@ -16,10 +17,10 @@ public class Button : MonoBehaviour
     void Update()
     {
         
-        if (Player.transform.position.x <= (transform.position.x + 1.2f) &&
-            Player.transform.position.x >= (transform.position.x - 1.2f) &&
-            Player.transform.position.y <= (transform.position.y + 1.2f) &&
-            Player.transform.position.y >= (transform.position.y - 1.2f))
+        if ((room.transform.position.x - Player.transform.position.x - (room.transform.position.x - transform.position.x ) <= 1 ) &&
+            (room.transform.position.x - Player.transform.position.x - (room.transform.position.x - transform.position.x ) >=-1 ) &&
+            (room.transform.position.y - Player.transform.position.y - (room.transform.position.y - transform.position.y ) <= -0.8f )&&
+            (room.transform.position.y - Player.transform.position.y - (room.transform.position.y - transform.position.y ) >=-2.8f ))
         {
             for (int i = 0; i < gosthPoints.Length; i++)
             {
