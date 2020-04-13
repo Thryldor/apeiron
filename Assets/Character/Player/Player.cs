@@ -164,6 +164,11 @@ namespace Player
                 _jumping = false;
                 animator.SetBool(Jumping, false);
             }
+
+            if (other.gameObject.tag == "Enemy")
+            {
+              vie = false;
+            }
         }
     }
 }

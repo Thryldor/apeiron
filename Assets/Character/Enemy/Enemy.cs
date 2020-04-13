@@ -23,6 +23,7 @@ namespace Character.Enemy
       lifebar = GameObject.Find("Lifebar").GetComponent<Slider>();
       if (directionLeft == true)
         transform.localRotation = Quaternion.Euler(0, 180, 0);
+      GetComponent<Rigidbody2D>().freezeRotation = true;
     }
 
     private IEnumerator AttackPlayer()
