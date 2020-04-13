@@ -15,9 +15,13 @@ public class PlayerTeleporter : MonoBehaviour
     public bool vie;
     public Player.Player playerTransform;
     public Camera mc;
+
+    private Slider _lifebar;
+
     //private LevelGeneration levelGen;
     private void Start()
     {
+      _lifebar = GameObject.Find("Lifebar").GetComponent<Slider>();
        // receiverMort = levelGen.getStart();
     }
 
@@ -38,6 +42,7 @@ public class PlayerTeleporter : MonoBehaviour
             playerVie.SetActive(true);
             playerMort.SetActive(false);
             playerTransform.vie = true;
+            _lifebar.value = 1f;
         }
     }
 

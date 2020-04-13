@@ -38,9 +38,6 @@ namespace Player
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _lifebar = GameObject.Find("Lifebar").GetComponent<Slider>();
             _soulbar = GameObject.Find("Soulbar").GetComponent<Slider>();
-            var scale = transform.localScale;
-            scale.x *= -1;
-            transform.localScale = scale;
         }
 
         // Update is called once per frame
@@ -159,7 +156,6 @@ namespace Player
         {
             if (other.gameObject.tag == "Spike")
             {
-                //_lifebar.value = 0.5f;
                 vie = false;
             }
 
