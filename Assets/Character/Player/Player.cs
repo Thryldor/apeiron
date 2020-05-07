@@ -17,6 +17,15 @@ namespace Player
         public Animator animator;
         public GameObject groundCheck;
 
+        public AudioClip attackSound;
+        public AudioClip jumpSound;
+        public AudioClip landSound;
+        public AudioClip hurtSound;
+        public AudioClip deathSound;
+        public AudioClip reviveSound;
+        public AudioClip gameoverSound;
+        public AudioClip[] biteSounds;
+
         private Slider _lifebar;
         private Slider _soulbar;
         private Rigidbody2D _rigidbody2D;
@@ -25,17 +34,26 @@ namespace Player
         private float _speed = 40F;
         private bool _jumping;
         private WalkDirection _walk = WalkDirection.Right;
+        private AudioSource _audioSource;
+        private AudioSource _globalAudioSource;
+        private bool _isGameover = false;
+        private bool _isWalking = false;
+        private bool _isInAir = true;
         public bool vie = true;
 
         private static readonly int Jumping = Animator.StringToHash("Jumping");
         private static readonly int Speed = Animator.StringToHash("Speed");
         private static readonly int Attack = Animator.StringToHash("Attack");
         private static readonly int TakeOff = Animator.StringToHash("TakeOff");
+        private static readonly int InTheAir = Animator.StringToHash("InTheAir");
+        private static readonly int Fall = Animator.StringToHash("Fall");
 
 
         private void Awake()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
+            _audioSource = transform.Find("Player Vie").GetComponent<AudioSource>();
+            _globalAudioSource = GetComponent<AudioSource>();
             _lifebar = GameObject.Find("Lifebar").GetComponent<Slider>();
             _soulbar = GameObject.Find("Soulbar").GetComponent<Slider>();
         }
@@ -46,6 +64,15 @@ namespace Player
             _horizontalMove = _direction.x * _speed;
             if (_jumping)
               animator.SetBool(Jumping, true);
+            if (_isInAir)
+              animator.SetBool(InTheAir, true);
+            if (!_jumping && _horizontalMove != 0 && !_isWalking) {
+              _globalAudioSource.Play();
+              _isWalking = true;
+            } else if (_isWalking && (_horizontalMove == 0 || _jumping)) {
+              _globalAudioSource.Stop();
+              _isWalking = false;
+            }
             if (_rigidbody2D.velocity.y < 0)
               _rigidbody2D.velocity += Vector2.up * Physics2D.gravity.y * (2.5f - 1) * Time.deltaTime;
         }
@@ -58,8 +85,11 @@ namespace Player
               _soulbar.value += 0.0002f;
             if (!vie && _soulbar.value > 0)
               _soulbar.value -= 0.0004f;
-            if (_soulbar.value <= 0)
-              SceneManager.LoadScene("Menu GameOver");
+            if (_soulbar.value <= 0 && _isGameover == false) {
+              _isGameover = true;
+              _globalAudioSource.PlayOneShot(gameoverSound, 1.0F);
+              StartCoroutine(GameOverScene(gameoverSound));
+            }
         }
 
         private void UpdateMove()
@@ -96,6 +126,7 @@ namespace Player
                 _rigidbody2D.velocity = Vector2.up * 8f;
                 animator.SetTrigger(TakeOff);
                 _jumping = true;
+                _audioSource.PlayOneShot(jumpSound, 1.0F);
             }
             else
             {
@@ -106,6 +137,18 @@ namespace Player
 
         }
 
+        private IEnumerator GameOverScene(AudioClip sound)
+        {
+          yield return new WaitForSeconds(sound.length);
+          SceneManager.LoadScene("Menu GameOver");
+        }
+
+        private IEnumerator PlaySound(AudioClip sound)
+        {
+          yield return new WaitForSeconds(0.5f);
+          _audioSource.PlayOneShot(sound, 1F);
+        }
+
         private IEnumerator KillEnemy(GameObject enemy)
         {
           yield return new WaitForSeconds(0.5f);
@@ -114,7 +157,11 @@ namespace Player
             float distance = Vector2.Distance(enemy.transform.position, transform.position);
             if (distance <= 3f)
             {
-              Destroy(enemy);
+              Character.Enemy.Enemy script = enemy.GetComponent<Character.Enemy.Enemy>();
+
+              script.die();
+              playHurtSound();
+              //Destroy(enemy);
             }
           }
         }
@@ -122,6 +169,7 @@ namespace Player
         public void OnAttack(InputAction.CallbackContext ctx)
         {
             animator.SetTrigger(Attack);
+            StartCoroutine(PlaySound(attackSound));
 
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -152,23 +200,64 @@ namespace Player
             transform.localScale = scale;
         }
 
+        private void OnCollisionExit2D(Collision2D other)
+        {
+          if (other.collider.CompareTag("Ground"))
+          {
+            _isInAir = true;
+            if (!_jumping)
+              animator.SetTrigger(Fall);
+          }
+        }
+
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.tag == "Spike")
+            Vector2 normal = other.contacts[0].normal;
+
+            if (other.collider.CompareTag("Ground") && Convert.ToInt32(normal.y) == 1)
             {
-                vie = false;
+              if (_jumping == true)
+                _audioSource.PlayOneShot(landSound, 1.0F);
+              _isInAir = false;
+              _jumping = false;
+              animator.SetBool(InTheAir, false);
+              animator.SetBool(Jumping, false);
             }
 
-            if (other.collider.CompareTag("Ground"))
+            if (other.gameObject.tag == "Spike")
             {
-                _jumping = false;
-                animator.SetBool(Jumping, false);
+                isDead();
             }
 
             if (other.gameObject.tag == "Enemy")
             {
-              vie = false;
+              if (other.gameObject.GetComponent<Character.Enemy.Enemy>().isAlive)
+                isDead();
             }
+        }
+
+        public void playHurtSound()
+        {
+          _audioSource.PlayOneShot(hurtSound, 1.0F);
+        }
+
+        public void isDead()
+        {
+          _globalAudioSource.PlayOneShot(deathSound, 2.0F);
+          vie = false;
+        }
+
+        public void playReviveSound()
+        {
+          _globalAudioSource.PlayOneShot(reviveSound, 2.0F);
+        }
+
+        public void playBiteSound()
+        {
+          System.Random random = new System.Random();
+          int randomIdx = random.Next(0, biteSounds.Length - 1);
+
+          _audioSource.PlayOneShot(biteSounds[randomIdx], 1.0F);
         }
     }
 }
