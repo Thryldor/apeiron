@@ -27,9 +27,9 @@ public class SpawnWall : MonoBehaviour
 
 
             if ((room.transform.position.x - Player.transform.position.x - (room.transform.position.x - transform.position.x) <= 1) &&
-            (room.transform.position.x - Player.transform.position.x - (room.transform.position.x - transform.position.x) >= -1) &&
-            (room.transform.position.y - Player.transform.position.y - (room.transform.position.y - transform.position.y) <= -0.8f) &&
-            (room.transform.position.y - Player.transform.position.y - (room.transform.position.y - transform.position.y) >= -2.8f)
+            (room.transform.position.x - Player.transform.position.x - (room.transform.position.x - transform.position.x) >= -1f) &&
+            (room.transform.position.y - Player.transform.position.y - (room.transform.position.y - transform.position.y) <= 1f) &&
+            (room.transform.position.y - Player.transform.position.y - (room.transform.position.y - transform.position.y) >= -1f)
             )
             {
                 if (!RoomType.done)
