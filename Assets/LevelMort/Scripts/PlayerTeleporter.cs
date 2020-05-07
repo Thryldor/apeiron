@@ -15,12 +15,13 @@ public class PlayerTeleporter : MonoBehaviour
     public bool vie;
     public Player.Player playerTransform;
     public Camera mc;
-
+    public GameObject text;
     private Slider _lifebar;
 
     //private LevelGeneration levelGen;
     private void Start()
     {
+        
       _lifebar = GameObject.Find("Lifebar").GetComponent<Slider>();
        // receiverMort = levelGen.getStart();
     }
@@ -48,9 +49,16 @@ public class PlayerTeleporter : MonoBehaviour
 
     private void Update()
     {
-        if (!vie && player.transform.position.y - bottom.transform.position.y <= -16f)
+        if (!vie && player.transform.position.y - bottom.transform.position.y <= -32.5f)
         {
-            stateChange();
+            text.SetActive(true);
+           
+            if (Input.GetKeyDown( KeyCode.E))
+            {
+                stateChange();
+                text.SetActive(false);
+            }
+            
         }
 
         if (vie && player.transform.position.y < -11)

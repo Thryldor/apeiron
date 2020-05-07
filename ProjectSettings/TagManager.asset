@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Spike
   - Enemy
+  - KeyNumber
   layers:
   - Default
   - TransparentFX

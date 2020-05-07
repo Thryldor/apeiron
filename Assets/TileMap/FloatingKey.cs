@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class FloatingKey : MonoBehaviour
 {
   private float up = 0f;
   private float direction = 0.5f;
-
-  void Update()
+    private int newNbKeys;
+   private Text keytext;
+        private void Start()
+    {
+        keytext = GameObject.FindGameObjectWithTag("KeyNumber").GetComponent<Text>();
+        
+    }
+    void Update()
   {
+        newNbKeys = int.Parse(GameObject.FindGameObjectWithTag("KeyNumber").GetComponent<Text>().text);
     Vector2 p = transform.position;
 
-    p.y += Time.deltaTime * direction;
+    p.y += Time.deltaTime * direction;  
     up += Time.deltaTime * direction;
 
     transform.position = p;
@@ -25,7 +33,20 @@ public class FloatingKey : MonoBehaviour
 
   private void OnCollisionEnter2D(Collision2D other)
   {
-    if (other.gameObject.tag == "Player")
-        SceneManager.LoadScene("Menu Win");
+        if (other.gameObject.tag == "Player")
+        {
+            newNbKeys += 1;
+            if(newNbKeys >= 2)
+            {
+                SceneManager.LoadScene("Menu Win");
+            }
+                keytext.text = ""+newNbKeys;
+                Destroy(this.gameObject);
+            
+           
+        }
+           
+        
+
   }
 }

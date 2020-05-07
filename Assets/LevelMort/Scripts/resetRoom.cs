@@ -7,6 +7,7 @@ public class resetRoom : MonoBehaviour
     private GameObject Player;
     public GameObject leButton;
     public GameObject[] entries;
+    public GameObject room;
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -17,10 +18,10 @@ public class resetRoom : MonoBehaviour
     {
         if (Player)
         {
-            if (Player.transform.position.x <= (transform.position.x + 1f) &&
-                Player.transform.position.x >= (transform.position.x - 1f) &&
-                Player.transform.position.y <= (transform.position.y + 1f) &&
-                Player.transform.position.y >= (transform.position.y - 1f)
+            if ((room.transform.position.x - Player.transform.position.x - (room.transform.position.x - transform.position.x) <= 1) &&
+            (room.transform.position.x - Player.transform.position.x - (room.transform.position.x - transform.position.x) >= -1) &&
+            (room.transform.position.y - Player.transform.position.y - (room.transform.position.y - transform.position.y) <= -0.8f) &&
+            (room.transform.position.y - Player.transform.position.y - (room.transform.position.y - transform.position.y) >= -2.8f)
             )
             {
                 RoomType.done = false;

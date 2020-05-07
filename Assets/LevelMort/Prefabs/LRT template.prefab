@@ -45,5 +45,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objects:
   - {fileID: 8455206496381199923, guid: ee7436f5795ac0b4e931cd66b5bdefc2, type: 3}
-  - {fileID: 1793403438986180005, guid: 9c7197516db97e5448dd7ff42064acc9, type: 3}
-  - {fileID: 2185417347716348484, guid: 78b3e4fa0f5926b4ab70dfbcfe899e9a, type: 3}
