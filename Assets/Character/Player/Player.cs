@@ -176,9 +176,11 @@ namespace Player
                 Time.timeScale = 0f;
                 _inPause = true;
                 _pauseUICG.alpha = 1;
+                _pauseUICG.interactable = true;
             }
             else
             {
+                _pauseUICG.interactable = false;
                 _pauseUICG.alpha = 0;
                 Time.timeScale = 1f;
                 _inPause = false;
