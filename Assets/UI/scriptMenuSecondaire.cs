@@ -21,4 +21,8 @@ public class scriptMenuSecondaire : MonoBehaviour
         SceneManager.LoadScene("Game");
         buttonSound.Play();
     }
+    public void quitGame()
+    {
+        Application.Quit();
+    }
 }

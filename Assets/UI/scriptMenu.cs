@@ -27,4 +27,8 @@ public class scriptMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Options");
     }
+    public void quitGame()
+    {
+        Application.Quit();
+    }
 }
