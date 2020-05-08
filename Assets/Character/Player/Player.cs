@@ -45,6 +45,7 @@ namespace Player
         private bool _isGameover = false;
         private bool _isWalking = false;
         private bool _isInAir = true;
+        private int collisionCounter = 0;
         public bool vie = true;
         public Vector2? lastCheckpoint = null;
         private bool _inPause = false;
@@ -152,7 +153,7 @@ namespace Player
             {
                 if (vie)
                 {
-                    if (_jumping) return;
+                    if (_jumping || _isInAir) return;
                     //_rigidbody2D.AddForce(new Vector2(0f, 400f));
                     _rigidbody2D.velocity = Vector2.up * 8f;
                     animator.SetTrigger(TakeOff);
@@ -292,15 +293,22 @@ namespace Player
         {
           if (other.collider.CompareTag("Ground"))
           {
-            _isInAir = true;
-            if (!_jumping)
-              animator.SetTrigger(Fall);
+            collisionCounter--;
+            if (collisionCounter == 0)
+            {
+              _isInAir = true;
+              if (!_jumping)
+                animator.SetTrigger(Fall);
+            }
           }
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
             Vector2 normal = other.contacts[0].normal;
+
+            if (other.collider.CompareTag("Ground"))
+              collisionCounter++;
 
             if (other.collider.CompareTag("Ground") && Convert.ToInt32(normal.y) == 1)
             {
