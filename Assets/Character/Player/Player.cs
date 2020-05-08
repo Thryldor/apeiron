@@ -64,6 +64,8 @@ namespace Player
             _lifebarCG = _lifebar.GetComponent<CanvasGroup>();
             _soulbarCG = _soulbar.GetComponent<CanvasGroup>();
             _backUICG = _backUI.GetComponent<CanvasGroup>();
+            _audioSource.volume = PlayerPrefs.GetFloat("soundVol",1f);
+            _globalAudioSource.volume = PlayerPrefs.GetFloat("soundVol",1f);
         }
 
         // Update is called once per frame
