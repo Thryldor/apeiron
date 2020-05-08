@@ -8,6 +8,7 @@ namespace Character.Enemy
   {
     public float speed = 10.0f;
     public float fallingSpeed = 0.5f;
+    public GameObject projectile;
 
     private float timer = 0f;
     private GameObject player;
@@ -17,6 +18,7 @@ namespace Character.Enemy
     private Animator animator;
     private static readonly int Left = Animator.StringToHash("Left");
     private static readonly int Right = Animator.StringToHash("Right");
+    private static readonly int Die = Animator.StringToHash("Die");
 
     void Start()
     {
@@ -33,10 +35,22 @@ namespace Character.Enemy
     {
       timer += Time.deltaTime;
 
+      Vector2 pos = transform.position;
+
       if (player == null && GameObject.FindGameObjectsWithTag("Player").Length > 0)
         player = GameObject.FindGameObjectsWithTag("Player")[0];
 
-      if (timer > 8f)
+      if (timer > 8f && player != null)
+      {
+        //transform.LookAt(player.transform);
+        GameObject bullet = Instantiate(projectile, transform.position, Quaternion.identity);
+        Vector3 targetPos = new Vector3(player.transform.position.x, player.transform.position.y - 2f, 0);
+        Vector2 direction = (targetPos - transform.position).normalized * 5f;
+        bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(direction.x, direction.y);
+      }
+
+      if ((timer > 8f && player && pos.y - player.transform.position.y < 10) ||
+          (player && pos.y <= player.transform.position.y))
       {
         if (player != null && transform.position.x < player.transform.position.x)
         {
@@ -56,9 +70,6 @@ namespace Character.Enemy
       }
       if (target != null)
       {
-        Debug.Log("CA BOUGE");
-        Vector2 pos = transform.position;
-
         pos.y += Time.deltaTime * speed;
         if (isLeft)
         {
@@ -76,11 +87,15 @@ namespace Character.Enemy
       }
       else
       {
-        Vector2 pos = transform.position;
-
         pos.y -= Time.deltaTime * fallingSpeed;
         transform.position = pos;
       }
+    }
+
+    public void die()
+    {
+      animator.SetTrigger(Die);
+      Destroy(gameObject, animator.GetCurrentAnimatorStateInfo(0).length);
     }
   }
 }

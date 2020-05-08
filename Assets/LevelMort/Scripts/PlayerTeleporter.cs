@@ -21,7 +21,7 @@ public class PlayerTeleporter : MonoBehaviour
     //private LevelGeneration levelGen;
     private void Start()
     {
-        
+
       _lifebar = GameObject.Find("Lifebar").GetComponent<Slider>();
        // receiverMort = levelGen.getStart();
     }
@@ -35,6 +35,7 @@ public class PlayerTeleporter : MonoBehaviour
             playerVie.SetActive(false);
             playerMort.SetActive(true);
             playerTransform.vie = false;
+            _lifebar.value = 0f;
         }
         else
         {
@@ -53,13 +54,13 @@ public class PlayerTeleporter : MonoBehaviour
         if (!vie && player.transform.position.y - bottom.transform.position.y <= -32.5f)
         {
             text.SetActive(true);
-           
+
             if (Input.GetKeyDown( KeyCode.E))
             {
                 stateChange();
                 text.SetActive(false);
             }
-            
+
         }
 
         if (vie && player.transform.position.y < -11)

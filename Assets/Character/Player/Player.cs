@@ -187,12 +187,32 @@ namespace Player
           }
         }
 
+        private IEnumerator KillFlyingEnemy(GameObject enemy)
+        {
+          yield return new WaitForSeconds(0.5f);
+          if (enemy != null)
+          {
+            float distance = Vector2.Distance(enemy.transform.position, transform.position);
+            if (distance <= 3f)
+            {
+              Character.Enemy.FlyingEnemy script = enemy.GetComponent<Character.Enemy.FlyingEnemy>();
+
+              script.die();
+              playHurtSound();
+              //Destroy(enemy);
+            }
+          }
+        }
+
+
+
         public void OnAttack(InputAction.CallbackContext ctx)
         {
             animator.SetTrigger(Attack);
             StartCoroutine(PlaySound(attackSound));
 
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+            GameObject[] flyingEnemies = GameObject.FindGameObjectsWithTag("FlyingEnemy");
 
             foreach(GameObject enemy in enemies)
             {
@@ -208,6 +228,24 @@ namespace Player
                 {
                   if (enemy.transform.position.x <= transform.position.x)
                     StartCoroutine(KillEnemy(enemy));
+                }
+              }
+            }
+
+            foreach(GameObject enemy in flyingEnemies)
+            {
+              float distance = Vector2.Distance(enemy.transform.position, transform.position);
+              if (distance <= 3f)
+              {
+                if (_walk == WalkDirection.Right)
+                {
+                  if (enemy.transform.position.x >= transform.position.x)
+                    StartCoroutine(KillFlyingEnemy(enemy));
+                }
+                else
+                {
+                  if (enemy.transform.position.x <= transform.position.x)
+                    StartCoroutine(KillFlyingEnemy(enemy));
                 }
               }
             }
@@ -253,6 +291,20 @@ namespace Player
             if (other.gameObject.tag == "Enemy")
             {
               if (other.gameObject.GetComponent<Character.Enemy.Enemy>().isAlive)
+                isDead();
+            }
+
+            if (other.gameObject.tag == "FlyingEnemy")
+            {
+              Debug.Log("test");
+              isDead();
+            }
+
+            if (other.gameObject.tag == "Bomb")
+            {
+              playHurtSound();
+              _lifebar.value -= 0.5f;
+              if (_lifebar.value <= 0f)
                 isDead();
             }
         }

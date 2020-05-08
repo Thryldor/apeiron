@@ -10,6 +10,8 @@ TagManager:
   - Spike
   - Enemy
   - KeyNumber
+  - FlyingEnemy
+  - Bomb
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - 
   - Room
   - Enemy
-  - 
+  - Bomb
   - 
   - 
   - 
