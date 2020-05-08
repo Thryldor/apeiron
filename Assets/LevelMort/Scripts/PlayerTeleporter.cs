@@ -44,7 +44,10 @@ public class PlayerTeleporter : MonoBehaviour
         else
         {
             playerTransform.playReviveSound();
-            player.position = receiverVie.position;
+            if (playerTransform.lastCheckpoint == null)
+              player.position = receiverVie.position;
+            else
+              player.position = new Vector3(((Vector2) playerTransform.lastCheckpoint).x, ((Vector2) playerTransform.lastCheckpoint).y, 0);
             vie = !vie;
             playerVie.SetActive(true);
             playerMort.SetActive(false);

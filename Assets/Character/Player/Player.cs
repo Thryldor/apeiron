@@ -16,6 +16,7 @@ namespace Player
     {
         public Animator animator;
         public GameObject groundCheck;
+        public Sprite takenBeacon;
 
         public AudioClip attackSound;
         public AudioClip jumpSound;
@@ -45,6 +46,7 @@ namespace Player
         private bool _isWalking = false;
         private bool _isInAir = true;
         public bool vie = true;
+        public Vector2? lastCheckpoint = null;
         private bool _inPause = false;
 
         private static readonly int Jumping = Animator.StringToHash("Jumping");
@@ -334,6 +336,15 @@ namespace Player
               if (_lifebar.value <= 0f)
                 isDead();
             }
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+          if (other.gameObject.tag == "Beacon")
+          {
+            other.gameObject.GetComponent<SpriteRenderer>().sprite = takenBeacon;
+            lastCheckpoint = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+          }
         }
 
         public void playHurtSound()

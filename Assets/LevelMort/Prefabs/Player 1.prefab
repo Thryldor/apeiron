@@ -939,6 +939,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7503629606587650687}
   groundCheck: {fileID: 7503629607239433043}
+  takenBeacon: {fileID: 21300000, guid: 3f6dc533a66ed473ca577d1ac981905a, type: 3}
   attackSound: {fileID: 8300000, guid: d01d312abd4104be0ae516c76e1e2eca, type: 3}
   jumpSound: {fileID: 8300000, guid: 5f1138910634c46a68df71963e03319f, type: 3}
   landSound: {fileID: 8300000, guid: d0cce1c24d24d4c169accb9f3b682c52, type: 3}

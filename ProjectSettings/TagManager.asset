@@ -13,6 +13,7 @@ TagManager:
   - FlyingEnemy
   - Bomb
   - TextCle
+  - Beacon
   layers:
   - Default
   - TransparentFX
