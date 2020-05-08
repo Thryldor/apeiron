@@ -40,6 +40,12 @@ namespace Character.Enemy
       if (player == null && GameObject.FindGameObjectsWithTag("Player").Length > 0)
         player = GameObject.FindGameObjectsWithTag("Player")[0];
 
+      if (player != null) {
+        float dist = Vector2.Distance(transform.position, player.transform.position);
+
+        if (dist > 20) return;
+      }
+
       if (timer > 8f && player != null)
       {
         //transform.LookAt(player.transform);
