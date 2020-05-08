@@ -3739,7 +3739,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 118.99979, y: 3.0352602}
+  m_Offset: {x: 118.99979, y: 3.9762778}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3750,7 +3750,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7840271, y: 27.949793}
+  m_Size: {x: 1.7840271, y: 26.067757}
   m_EdgeRadius: 0
 --- !u!61 &1199120467
 BoxCollider2D:
@@ -3791,7 +3791,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 129.41095, y: -9.997372}
+  m_Offset: {x: 128.51694, y: -9.997372}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3802,7 +3802,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 19.040878, y: 1.8928452}
+  m_Size: {x: 20.828934, y: 1.8928452}
   m_EdgeRadius: 0
 --- !u!61 &1199120469
 BoxCollider2D:
@@ -6947,6 +6947,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2193964738977388533, guid: 5b5082f3a19d9204fb72f21ac87c52be,
+        type: 3}
+      propertyPath: m_Text
+      value: "Trouvez la cl\xE9 dans le temps imparti"
+      objectReference: {fileID: 0}
     - target: {fileID: 2857489944656075548, guid: 5b5082f3a19d9204fb72f21ac87c52be,
         type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -7015,7 +7020,7 @@ PrefabInstance:
     - target: {fileID: 2857489944921926992, guid: 5b5082f3a19d9204fb72f21ac87c52be,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2857489944921926992, guid: 5b5082f3a19d9204fb72f21ac87c52be,
         type: 3}
@@ -7195,7 +7200,7 @@ PrefabInstance:
     - target: {fileID: 9168817721941044318, guid: 5b5082f3a19d9204fb72f21ac87c52be,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 9168817721941044318, guid: 5b5082f3a19d9204fb72f21ac87c52be,
         type: 3}
