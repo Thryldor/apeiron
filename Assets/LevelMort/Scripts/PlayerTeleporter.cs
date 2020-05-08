@@ -38,6 +38,7 @@ public class PlayerTeleporter : MonoBehaviour
         }
         else
         {
+            playerTransform.playReviveSound();
             player.position = receiverVie.position;
             vie = !vie;
             playerVie.SetActive(true);
