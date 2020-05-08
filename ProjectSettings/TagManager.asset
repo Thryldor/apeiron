@@ -12,6 +12,7 @@ TagManager:
   - KeyNumber
   - FlyingEnemy
   - Bomb
+  - TextCle
   layers:
   - Default
   - TransparentFX
