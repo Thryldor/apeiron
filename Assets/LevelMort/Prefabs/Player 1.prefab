@@ -777,7 +777,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7503629607956848409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+<<<<<<< HEAD
   m_LocalPosition: {x: 490.05707, y: 15, z: 0}
+=======
+  m_LocalPosition: {x: 470.05707, y: 15, z: 0}
+>>>>>>> 446f542a8e2e0c038cca23c936849a3a13ef9196
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7503629606587650684}
@@ -905,6 +909,21 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d3e4bc90-7c34-4b96-a57d-baf35bbe09ea
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7503629607956848411}
+        m_MethodName: OnPause
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 5b556ab2-edeb-4163-9191-41c5b212ee0a
+    m_ActionName: Player/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Keyboard&Mouse
   m_DefaultActionMap: Player
@@ -924,6 +943,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7503629606587650687}
   groundCheck: {fileID: 7503629607239433043}
+  takenBeacon: {fileID: 21300000, guid: 3f6dc533a66ed473ca577d1ac981905a, type: 3}
   attackSound: {fileID: 8300000, guid: d01d312abd4104be0ae516c76e1e2eca, type: 3}
   jumpSound: {fileID: 8300000, guid: 5f1138910634c46a68df71963e03319f, type: 3}
   landSound: {fileID: 8300000, guid: d0cce1c24d24d4c169accb9f3b682c52, type: 3}
@@ -962,6 +982,7 @@ MonoBehaviour:
   playerTransform: {fileID: 7503629607956848411}
   mc: {fileID: 0}
   text: {fileID: 660934806303193385}
+  textCle: {fileID: 0}
 --- !u!82 &8166165860947679017
 AudioSource:
   m_ObjectHideFlags: 0

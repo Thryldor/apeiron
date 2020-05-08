@@ -17,11 +17,12 @@ public class PlayerTeleporter : MonoBehaviour
     public Camera mc;
     public GameObject text;
     private Slider _lifebar;
-
+    public GameObject textCle;
     //private LevelGeneration levelGen;
     private void Start()
     {
-        
+        textCle = GameObject.FindGameObjectWithTag("TextCle");
+        textCle.SetActive(false);
       _lifebar = GameObject.Find("Lifebar").GetComponent<Slider>();
        // receiverMort = levelGen.getStart();
     }
@@ -35,11 +36,18 @@ public class PlayerTeleporter : MonoBehaviour
             playerVie.SetActive(false);
             playerMort.SetActive(true);
             playerTransform.vie = false;
+            _lifebar.value = 0f;
+            textCle.SetActive(true);
+            Invoke("deleteText", 4);
+
         }
         else
         {
             playerTransform.playReviveSound();
-            player.position = receiverVie.position;
+            if (playerTransform.lastCheckpoint == null)
+              player.position = receiverVie.position;
+            else
+              player.position = new Vector3(((Vector2) playerTransform.lastCheckpoint).x, ((Vector2) playerTransform.lastCheckpoint).y, 0);
             vie = !vie;
             playerVie.SetActive(true);
             playerMort.SetActive(false);
@@ -53,13 +61,13 @@ public class PlayerTeleporter : MonoBehaviour
         if (!vie && player.transform.position.y - bottom.transform.position.y <= -32.5f)
         {
             text.SetActive(true);
-           
+
             if (Input.GetKeyDown( KeyCode.E))
             {
                 stateChange();
                 text.SetActive(false);
             }
-            
+
         }
 
         if (vie && player.transform.position.y < -11)
@@ -68,5 +76,9 @@ public class PlayerTeleporter : MonoBehaviour
         }
         if (vie && playerTransform.vie == false)
           stateChange();
+    }
+    void deleteText()
+    {
+        textCle.SetActive(false);
     }
 }

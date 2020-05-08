@@ -6,19 +6,15 @@ using System.Collections;
 public class scriptOptions : MonoBehaviour
 {
 
-    private int musicVolume;
-    private int sfxVolume;
+    private float soundVolume;
 
-    public Slider musicVolumeSlider;
-    public Slider sfxVolumeSlider;
+    public Slider soundVolumeSlider;
     // Start is called before the first frame update
     void Start()
     {
-        musicVolume = PlayerPrefs.GetInt("musicVolume",100);
-        sfxVolume = PlayerPrefs.GetInt("sfxVolume",100);
+        soundVolume = PlayerPrefs.GetFloat("soundVol",1);
 
-        musicVolumeSlider.value = musicVolume;
-        sfxVolumeSlider.value = sfxVolume;
+        soundVolumeSlider.value = soundVolume;
     }
 
     // Update is called once per frame
@@ -32,14 +28,10 @@ public class scriptOptions : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void ChangeMusicValue(Slider slider) {
-        musicVolume = (int)slider.value;
-        PlayerPrefs.SetInt("musicVolume", musicVolume);
+    public void ChangeSoundValue(Slider slider) {
+        soundVolume = slider.value;
+        PlayerPrefs.SetFloat("soundVol", soundVolume);
         PlayerPrefs.Save();
     }
-    public void ChangeSfxValue(Slider slider) {
-        sfxVolume = (int)slider.value;
-        PlayerPrefs.SetInt("sfxVolume", sfxVolume);
-        PlayerPrefs.Save();
-    }
+
 }
