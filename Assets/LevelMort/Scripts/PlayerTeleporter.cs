@@ -17,11 +17,12 @@ public class PlayerTeleporter : MonoBehaviour
     public Camera mc;
     public GameObject text;
     private Slider _lifebar;
-
+    public GameObject textCle;
     //private LevelGeneration levelGen;
     private void Start()
     {
-
+        textCle = GameObject.FindGameObjectWithTag("TextCle");
+        textCle.SetActive(false);
       _lifebar = GameObject.Find("Lifebar").GetComponent<Slider>();
        // receiverMort = levelGen.getStart();
     }
@@ -36,6 +37,9 @@ public class PlayerTeleporter : MonoBehaviour
             playerMort.SetActive(true);
             playerTransform.vie = false;
             _lifebar.value = 0f;
+            textCle.SetActive(true);
+            Invoke("deleteText", 4);
+
         }
         else
         {
@@ -69,5 +73,9 @@ public class PlayerTeleporter : MonoBehaviour
         }
         if (vie && playerTransform.vie == false)
           stateChange();
+    }
+    void deleteText()
+    {
+        textCle.SetActive(false);
     }
 }
