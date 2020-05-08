@@ -9,4 +9,8 @@ public class scriptMenu : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
     }
+    public void GoToOptions()
+    {
+        SceneManager.LoadScene("Options");
+    }
 }

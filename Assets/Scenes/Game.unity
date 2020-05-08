@@ -4264,6 +4264,24 @@ Transform:
   m_Father: {fileID: 115732339}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2009758532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2857489945582475723, guid: 5b5082f3a19d9204fb72f21ac87c52be,
+    type: 3}
+  m_PrefabInstance: {fileID: 2857489945494107837}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &2009758534
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2009758532}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2041827443
 GameObject:
   m_ObjectHideFlags: 0
@@ -5152,6 +5170,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2857489945655255249, guid: 5b5082f3a19d9204fb72f21ac87c52be,
+        type: 3}
+      propertyPath: m_Name
+      value: BackgroundUI
       objectReference: {fileID: 0}
     - target: {fileID: 2857489946570194072, guid: 5b5082f3a19d9204fb72f21ac87c52be,
         type: 3}

@@ -19,6 +19,10 @@ namespace Player
 
         private Slider _lifebar;
         private Slider _soulbar;
+        private Image _backUI;
+        private CanvasGroup _lifebarCG;
+        private CanvasGroup _soulbarCG;
+        private CanvasGroup _backUICG;
         private Rigidbody2D _rigidbody2D;
         private Vector2 _direction;
         private float _horizontalMove;
@@ -38,6 +42,10 @@ namespace Player
             _rigidbody2D = GetComponent<Rigidbody2D>();
             _lifebar = GameObject.Find("Lifebar").GetComponent<Slider>();
             _soulbar = GameObject.Find("Soulbar").GetComponent<Slider>();
+            _backUI = GameObject.Find("BackgroundUI").GetComponent<Image>();
+            _lifebarCG = _lifebar.GetComponent<CanvasGroup>();
+            _soulbarCG = _soulbar.GetComponent<CanvasGroup>();
+            _backUICG = _backUI.GetComponent<CanvasGroup>();
         }
 
         // Update is called once per frame
@@ -55,9 +63,20 @@ namespace Player
             UpdateMove();
 
             if (vie && _soulbar.value < 1f)
+            {
               _soulbar.value += 0.0002f;
+              _lifebarCG.alpha = 1f;
+              _backUICG.alpha = 1f;
+              if (_soulbar.value >= 1f)
+                _soulbarCG.alpha = 0f;
+            }
             if (!vie && _soulbar.value > 0)
+            {
+              _lifebarCG.alpha = 0f;
+              _backUICG.alpha = 0f;
               _soulbar.value -= 0.0004f;
+              _soulbarCG.alpha = 1f;
+            }
             if (_soulbar.value <= 0)
               SceneManager.LoadScene("Menu GameOver");
         }

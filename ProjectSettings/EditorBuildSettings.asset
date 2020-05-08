@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Level Apeiron.unity
     guid: ae55b45e9b93bc148a14839b44b693d5
+  - enabled: 1
+    path: Assets/Scenes/Options.unity
+    guid: 55370921627fa6e46aab4b3fa48e287b
   m_configObjects: {}
